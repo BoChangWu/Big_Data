@@ -1,9 +1,31 @@
 version: '3.3'
 services:
-  api:
-    container_name: api
-    build: C:\Users\jsonwu\Desktop\codereview\backend
+  server:
+    depends_on:
+      - mariadb
+    container_name: BigData_Server
+    image: big_data_server:latest
+    build: ../Big_Data
+    command: bash -c "python /SERVER/manage.py migrate && python /SERVER/manage.py runserver 0.0.0.0:8000 --noreload "
+    # && python /SERVER/manage.py precreateuser --username admin --password admin0000
     restart: always
     ports:
     - 8000:8000
-    # volumes:
+    links:
+    - "mariadb:mariadb"
+
+  mariadb:
+    container_name: MariaDB
+    image: mariadb:latest
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=123456
+      - MARIADB_DATABASE=server
+    ports:
+    - 3306:3306
+    volumes:
+      - mariadb-data:/var/lib/mariadb
+
+volumes: 
+  mariadb-data:
+    external: true

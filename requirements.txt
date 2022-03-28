@@ -1,0 +1,11 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+pyyaml
+pyjwt
+requests
+django-cors-headers
+mysqlclient
+pytz
+SQLAlchemy
+urllib3   
