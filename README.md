@@ -13,14 +13,30 @@ codereview for Bigdata
     python manage.py migrate 在db建立 table
 
 ## urls
-*主頁
-    articles/',views.article_cover)
-*顯示指定文章內容
-    article/<id:int>,
-*新增文章
-    article/create/<id:int>
-*刪除文章
-    article/delete_<id:int>
-*修改文章
-    article/update_<id:int>
+* 主頁
+    articles/
+* 顯示指定文章內容
+    article/(id:int)
+* 新增文章
+    article/create/(id:int)
+* 刪除文章
+    article/delete_(id:int)
+* 修改文章
+    article/update_(id:int)
 
+以上四個功能中只有 POST, PUT 需要額外data:
+
+```python
+    data:{
+        #標題
+        'title': str,
+        # 封面照片網址
+        'cover': str,
+        # 內文
+        'content': str,
+        # 內文圖片網址
+        'img': List[str],
+        # 相關文章網址
+        'related': List[str]
+    }
+```

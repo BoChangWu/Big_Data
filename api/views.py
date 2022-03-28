@@ -75,15 +75,15 @@ def delete_article(request,*args,**kwargs):
     Img.objects.filter(art_id=kwargs).delete()
     Related.objects.filter(art_id=kwargs).delete()
 
-@api_view(['UPDATE'])
+@api_view(['PUT'])
 def update_article(request,*args,**kwargs):
     data= request.data
     Art.objects.filter(art_id=kwargs).update(title=data['title'],content=data['content'],cover=data['cover'])
     Img.objects.filter(art_id=kwargs).delete()
     Related.objects.filter(art_id=kwargs).delete()
-    for i in data['img_url']:
+    for i in data['img']:
         Img.objects.create(art_id=kwargs,url=i)
-    for r in data['rel_url']:
+    for r in data['related']:
         Related.objects.create(art_id=kwargs,url=r)
 
 
