@@ -14,16 +14,25 @@ codereview for Bigdata
 
 ## urls
 * 主頁
+```python
     articles/
+```
 * 顯示指定文章內容
-    article/(id:int)
+```python
+article/(id:int)
+```
 * 新增文章
-    article/create/(id:int)
+```python
+article/create/(id:int)
+```
 * 刪除文章
-    article/delete_(id:int)
+```python
+article/delete_(id:int)
+```
 * 修改文章
-    article/update_(id:int)
-
+```python
+article/update_(id:int)
+```
 以上四個功能中只有 POST, PUT 需要額外data:
 
 ```python
